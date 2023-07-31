@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Circonferenza e Area del Cerchio</title>
+</head>
+<body>
+    <h1>Calcolo Circonferenza e Area del Cerchio</h1>
+    <label for="raggio">Inserisci il raggio del cerchio:</label>
+    <input type="number" id="raggio">
+    <button onclick="calcola()">Calcola</button>
+
+    <p id="circonferenza"></p>
+    <p id="area"></p>
+
+    <script>
+        function calcola() {
+            var raggio = parseFloat(document.getElementById("raggio").value);
+            if (isNaN(raggio)) {
+                alert("Inserisci un valore numerico per il raggio!");
+                return;
+            }
+
+            var circonferenza = 2 * Math.PI * raggio;
+            var area = Math.PI * Math.pow(raggio, 2);
+
+            document.getElementById("circonferenza").textContent = "Circonferenza: " + circonferenza.toFixed(2);
+            document.getElementById("area").textContent = "Area: " + area.toFixed(2);
+        }
+    </script>
+</body>
+</html>

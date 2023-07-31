@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calcolo Media, Massimo e Minimo</title>
+  <style>
+    /* Stili per i risultati */
+    #result {
+      font-size: 18px;
+      color: #333;
+    }
+
+    #average {
+      color: #007bff; /* Colore blu */
+    }
+
+    #max {
+      color: #28a745; /* Colore verde */
+    }
+
+    #min {
+      color: #dc3545; /* Colore rosso */
+    }
+  </style>
+</head>
+<body>
+  <h1>Calcolo Media, Massimo e Minimo</h1>
+
+  <p>Inserisci una serie di numeri separati da virgola (es. 10, 20, 30):</p>
+  <input type="text" id="numbersInput">
+  <button onclick="calculate()">Calcola</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      const numbersInput = document.getElementById("numbersInput").value;
+      const numbersArray = numbersInput.split(",");
+      const numbers = numbersArray.map((num) => parseFloat(num));
+
+      if (numbers.some(isNaN)) {
+        document.getElementById("result").innerText = "Inserisci solo numeri validi separati da virgola.";
+        return;
+      }
+
+      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+      const average = sum / numbers.length;
+      const max = Math.max(...numbers);
+      const min = Math.min(...numbers);
+
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `
+        Media: <span id="average">${average.toFixed(2)}</span> <br>
+        Massimo: <span id="max">${max}</span> <br>
+        Minimo: <span id="min">${min}</span>
+      `;
+    }
+  </script>
+
+<br><br>
+
+<a href="index.html">Indietro</a>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calcolo Media, Massimo e Minimo, MCM e MCD</title>
+  <style>
+    /* Stili per i risultati */
+    #result {
+      font-size: 18px;
+      color: #333;
+    }
+
+    #average {
+      color: #007bff; /* Colore blu */
+    }
+
+    #max {
+      color: #28a745; /* Colore verde */
+    }
+
+    #min {
+      color: #dc3545; /* Colore rosso */
+    }
+
+    #lcm {
+      color: #ff8800; /* Colore arancione */
+    }
+
+    #mcd {
+      color: #800080; /* Colore viola */
+    }
+  </style>
+</head>
+<body>
+  <h1>Calcolo Media, Massimo e Minimo, mcm e MCD</h1>
+
+  <p>Inserisci una serie di numeri separati da virgola (es. 10, 20, 30):</p>
+  <input type="text" id="numbersInput">
+  <button onclick="calculate()">Calcola</button>
+
+  <p id="result"></p>
+
+  <script>
+    // Funzione per calcolare il Minimo Comune Multiplo (LCM)
+    function lcm(a, b) {
+      return (a * b) / gcd(a, b);
+    }
+
+    // Funzione per calcolare il Massimo Comune Divisore (MCD)
+    function gcd(a, b) {
+      return b === 0 ? a : gcd(b, a % b);
+    }
+
+    function calculate() {
+      const numbersInput = document.getElementById("numbersInput").value;
+      const numbersArray = numbersInput.split(",");
+      const numbers = numbersArray.map((num) => parseFloat(num));
+
+      if (numbers.some(isNaN)) {
+        document.getElementById("result").innerText = "Inserisci solo numeri validi separati da virgola.";
+        return;
+      }
+
+      const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+      const average = sum / numbers.length;
+      const max = Math.max(...numbers);
+      const min = Math.min(...numbers);
+
+      // Calcola il Minimo Comune Multiplo (LCM)
+      let lcmResult = numbers[0];
+      for (let i = 1; i < numbers.length; i++) {
+        lcmResult = lcm(lcmResult, numbers[i]);
+      }
+
+      // Calcola il Massimo Comune Divisore (MCD)
+      let gcdResult = numbers[0];
+      for (let i = 1; i < numbers.length; i++) {
+        gcdResult = gcd(gcdResult, numbers[i]);
+      }
+
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `
+        Media: <span id="average">${average.toFixed(2)}</span> <br>
+        Massimo: <span id="max">${max}</span> <br>
+        Minimo: <span id="min">${min}</span> <br>
+        Minimo Comune Multiplo (mcm): <span id="lcm">${lcmResult}</span> <br>
+        Massimo Comune Divisore (MCD): <span id="mcd">${gcdResult}</span>
+      `;
+    }
+  </script>
+
+<br><br>
+
+<a href="index.html">Indietro</a>
+
+</body>
+</html>
