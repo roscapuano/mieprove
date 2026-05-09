@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Materiali Didattici – R. Capuano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #f5f3ee;
+      --surface:   #ffffff;
+      --ink:       #1a1a1a;
+      --ink-light: #6b6660;
+      --accent:    #2d6a4f;
+      --accent2:   #e76f51;
+      --border:    #e0ddd7;
+      --tag-bg:    #eaf4ef;
+      --tag-ink:   #1d4e36;
+      --radius:    12px;
+      --shadow:    0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.18;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--accent2);
+      opacity: 0.12;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .header-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.6rem;
+    }
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+    header p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── SECTION BLOCK ── */
+    .section-block {
+      margin-bottom: 3rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .section-header .section-sub {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      text-decoration: none;
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.11);
+      border-color: var(--accent);
+    }
+    .card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 700;
+    }
+    .card-desc {
+      font-size: 0.84rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--tag-bg);
+      color: var(--tag-ink);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ── COMING SOON card ── */
+    .card-soon {
+      opacity: 0.55;
+      cursor: default;
+      border-style: dashed;
+    }
+    .card-soon:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+      border-color: var(--border);
+    }
+    .badge-soon {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #f0ece4;
+      color: var(--ink-light);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 520px) {
+      header { padding: 2rem 1.25rem 2rem; }
+      main { padding: 2rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-label">Materiali Didattici</div>
+    <h1>Esempi &amp; Risorse<br>per la classe</h1>
+    <p>Raccolta di esercizi ed esempi interattivi su HTML, JavaScript, Informatica e non solo. In continua evoluzione.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- SEZIONE: Matematica di base -->
+  <div class="section-block">
+    <div class="section-header">
+      <h2>🔢 Matematica di base</h2>
+      <span class="section-sub">Esercizi interattivi con JavaScript</span>
+    </div>
+    <div class="card-grid">
+
+      <a href="cerchio.html" class="card">
+        <div class="card-icon">⭕</div>
+        <div class="card-title">Il Cerchio</div>
+        <div class="card-desc">Calcolo di circonferenza e area a partire dal raggio.</div>
+        <div class="card-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Geometria</span>
+        </div>
+      </a>
+
+      <a href="numeri.html" class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Numeri: Max, Min, Media</div>
+        <div class="card-desc">Inserisci una lista di numeri e ottieni massimo, minimo e media.</div>
+        <div class="card-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Array</span>
+        </div>
+      </a>
+
+      <a href="numeri2.html" class="card">
+        <div class="card-icon">🔣</div>
+        <div class="card-title">Numeri: MCM e MCD</div>
+        <div class="card-desc">Estensione dell'esercizio precedente con calcolo di MCM e MCD.</div>
+        <div class="card-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Algoritmi</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SEZIONE: HTML & Web (placeholder pronto per crescere) -->
+  <div class="section-block">
+    <div class="section-header">
+      <h2>🌐 HTML &amp; Web</h2>
+      <span class="section-sub">Esempi di pagine e strutture web</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="card card-soon">
+        <div class="card-icon">📄</div>
+        <div class="card-title">Struttura base di una pagina HTML</div>
+        <div class="card-desc">Anatomia di un documento HTML5: head, body, tag semantici.</div>
+        <span class="badge-soon">In arrivo</span>
+      </div>
+
+      <div class="card card-soon">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">Introduzione ai CSS</div>
+        <div class="card-desc">Selettori, proprietà, box model e prime regole di stile.</div>
+        <span class="badge-soon">In arrivo</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEZIONE: Informatica (placeholder) -->
+  <div class="section-block">
+    <div class="section-header">
+      <h2>💻 Informatica</h2>
+      <span class="section-sub">Algoritmi, strutture dati e altro</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="card card-soon">
+        <div class="card-icon">🐍</div>
+        <div class="card-title">Esercizi Python</div>
+        <div class="card-desc">Esempi introduttivi in Python: variabili, funzioni, cicli.</div>
+        <span class="badge-soon">In arrivo</span>
+      </div>
+
+      <div class="card card-soon">
+        <div class="card-icon">🗄️</div>
+        <div class="card-title">Basi di SQL</div>
+        <div class="card-desc">Query di esempio su database semplici.</div>
+        <span class="badge-soon">In arrivo</span>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Materiali a cura di R. Capuano — ITIS, provincia di Milano &nbsp;·&nbsp; Aggiornato: 2025
+</footer>
+
+</body>
+</html>
